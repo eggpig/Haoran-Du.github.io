@@ -1009,6 +1009,18 @@ hr.soft {
     background-color: #0077B5
 }
 
+.scholar span {
+    background-color: #2f5fb3
+}
+
+.orcid span {
+    background-color: #A6CE39
+}
+
+.xiaohongshu span {
+    background-color: #1f1f1f
+}
+
 .github span {
     background-color: #000
 }
@@ -1045,11 +1057,29 @@ hr.soft {
     color: #0077B5
 }
 
+.icon-button .icon-scholar {
+    color: #2f5fb3
+}
+
+.icon-button .icon-orcid {
+    color: #A6CE39
+}
+
+.icon-button.xiaohongshu .icon-xiaohongshu {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.icon-button.xiaohongshu:hover .icon-xiaohongshu {
+    transform: scale(0.9);
+    opacity: 0.92;
+}
 
 .icon-button:hover .icon-twitter,
 .icon-button:hover .icon-facebook,
 .icon-button:hover .icon-github,
-.icon-button:hover .icon-linkedin {
+.icon-button:hover .icon-linkedin,
+.icon-button:hover .icon-scholar,
+.icon-button:hover .icon-orcid {
     color: white
 }
 
