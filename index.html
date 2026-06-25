@@ -33,14 +33,11 @@
   <meta name="keywords" lang="en" content="Jun CEN" />
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="shortcut icon" href="images/favicon.svg">
-  <link rel="stylesheet" href="main.css?v=20260503-13">
+  <link rel="stylesheet" href="main.css?v=20260625-4">
   <link rel="stylesheet" href="css/custom.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/academicons.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
-
-  <script src="js/jquery-2.1.3.min.js"> </script>
 
   <!--[if lt IE 9]>
 <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
@@ -847,6 +844,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Academic Services
       </h1>
       <ul>
+        <li><span class="service-label">Journal Reviewer</span>:</li>
+        <li>IEEE Transactions on Cybernetics</li>
         <li><span class="service-label">Conference Reviewer</span>:</li>
         <li>International Conference on Machine Learning (ICML)</li>
         <li>The ACM Web Conference (WWW)</li>
@@ -856,8 +855,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <div style="display: flex; justify-content: center; align-items: center;">
-  <div style="max-width: 320px; width: 100%;">
-    <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=G1WMXY6SRNIYxlgxf4GSeUsHgotMEuFukvN44gibelc"></script>
+  <div class="visitor-globe">
+    <script type="text/javascript" id="mmvst_globe" src="https://mapmyvisitors.com/globe.js?d=i8ZQDWBE8ewcgou5098taJYI_CejolYD-uhfLXLzOaM&x=y"></script>
   </div>
 </div>
 
@@ -906,43 +905,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<div class="footer-col footer-col-3">
     	<!--<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fwillhua127.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a> -->
 	<!-- <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?user=Lxe71v4AAAAJ&hl=en&url=https%3A%2F%2Fscholar.google.com%2Fcitations&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a> -->
-		<p class="text">Last updated: May 2026.<br>Style inspired by <a href="https://cen-jun.com/" target="_blank" rel="noopener noreferrer">cen-jun.com</a>, <a href="https://zqyuan.com/" target="_blank" rel="noopener noreferrer">zqyuan.com</a>, and <a href="https://www.hexianghu.com/" target="_blank" rel="noopener noreferrer">hexianghu.com</a>.</p>
+		<p class="text">Last updated: Jun. 2026.<br>Style inspired by <a href="https://cen-jun.com/" target="_blank" rel="noopener noreferrer">cen-jun.com</a>, <a href="https://zqyuan.com/" target="_blank" rel="noopener noreferrer">zqyuan.com</a>, and <a href="https://www.hexianghu.com/" target="_blank" rel="noopener noreferrer">hexianghu.com</a>.</p>
 	</div>
   </div>
   <p class="footer-quote">Viva la Vida.</p>
   </div>
 
 </footer>
-    <div class="back-to-top">Top</div>
+    <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
+      <span aria-hidden="true">&#8593;</span>
+    </button>
 
 
 <script type="text/javascript">
-jQuery(document).ready(function() {
-    var offset = 220;
-    var duration = 500;
-    jQuery(window).scroll(function() {
-        if (jQuery(this).scrollTop() > offset) {
-            jQuery('.back-to-top').fadeIn(duration);
-        } else {
-            jQuery('.back-to-top').fadeOut(duration);
-    
-        }
-    });
-    jQuery('.back-to-top').click(function(event) {
-        event.preventDefault();
-        jQuery('html, body').animate({scrollTop: 0}, duration);
-        return false;
-    })
-});
-</script>
-<script type="text/javascript">
-  if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-  }
-  window.addEventListener("pageshow", function () {
-    if (!window.location.hash) {
-      window.scrollTo(0, 0);
+  document.addEventListener('DOMContentLoaded', function () {
+    var backToTop = document.querySelector('.back-to-top');
+    if (!backToTop) return;
+
+    function updateBackToTop() {
+      backToTop.classList.toggle('is-visible', window.scrollY > 220);
     }
+
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    updateBackToTop();
   });
 </script>
   </body>
