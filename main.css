@@ -1098,10 +1098,36 @@ pre>code {
 }
 
 .visitor-globe {
-    width: 100%;
-    max-width: 320px;
-    margin: 10px auto 24px;
-    text-align: center
+    width: calc(100% - 30px);
+    max-width: 800px;
+    margin: 22px auto 36px;
+    overflow: hidden;
+    text-align: center;
+    background: #1f6f8b;
+    border-radius: 6px;
+    box-shadow: 0 10px 24px rgba(23, 50, 77, 0.16)
+}
+
+.visitor-globe a {
+    display: block;
+    max-width: 100%
+}
+
+.visitor-globe #mapmyvisitors-widget,
+.visitor-globe .mapmyvisitors-map,
+.visitor-globe .mapmyvisitors-map-container {
+    max-width: 100%
+}
+
+.visitor-globe #mapmyvisitors-widget,
+.visitor-globe .mapmyvisitors-visitors,
+.visitor-globe .mapmyvisitors-date,
+.visitor-globe .mapmyvisitors-bottom-text,
+.visitor-globe .mapmyvisitors-loading,
+.visitor-globe .mapmyvisitors-loading *,
+.jvectormap-tip {
+    font-family: "Times New Roman", Times, serif !important;
+    letter-spacing: 0 !important
 }
 
 hr.soft {
