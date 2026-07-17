@@ -33,10 +33,11 @@
   <meta name="keywords" lang="en" content="Jun CEN" />
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="shortcut icon" href="images/favicon.svg">
+  <link rel="preload" as="image" href="images/background/retina/jiangwan.jpg" fetchpriority="high">
+  <link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="main.css?v=20260625-4">
-  <link rel="stylesheet" href="css/custom.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/academicons.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
   <!--[if lt IE 9]>
@@ -115,9 +116,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="cover-bg-b" class="cover-bg-layer" aria-hidden="true"></div>
     <div id="profile-namecard" class="profile-wrapper wrapper-light">
       <div id="my-pic" class="profile-col profile-col-1">
-        <img id="profile-avatar" src="images/myself.png" alt="Haoran Du" class="circle-img border-dark" style="cursor:pointer;" title="Click to switch photo" />
+        <img id="profile-avatar" src="images/myself-lossless.webp" alt="Haoran Du" class="circle-img border-dark" style="cursor:pointer;" title="Click to switch photo" width="2508" height="2508" decoding="async" />
         <div class="avatar-hint" aria-hidden="true">
-          <img class="avatar-hint-img" src="images/click_here_sign_transparent.png" alt="" />
+          <img class="avatar-hint-img" src="images/click_here_sign_transparent-lossless.webp" alt="" width="1254" height="1254" decoding="async" />
         </div>
       </div>
       <div id="my-contact" class="profile-col profile-col-2">
@@ -159,7 +160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span></span>
           </a> -->
           <a href="https://www.xiaohongshu.com/user/profile/5af7ff1ee8ac2b1c3f6deff9" class="icon-button xiaohongshu" aria-label="小红书" target="_blank" rel="noopener noreferrer">
-            <i> <img class="icon-xiaohongshu" src="https://cdn.simpleicons.org/xiaohongshu/FF2D55" alt="" width="45" height="45" style="vertical-align:middle;"> </i>
+            <i> <img class="icon-xiaohongshu" src="images/xiaohongshu.svg" alt="" width="45" height="45" style="vertical-align:middle;"> </i>
             <span></span>
           </a>
 
@@ -225,7 +226,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function () {
     var avatar = document.getElementById("profile-avatar");
     if (avatar) {
-      var photoDefault = "images/myself.png";
+      var photoDefault = "images/myself-lossless.webp";
       var photoFormal = "images/myself_formal.jpg";
       var showingFormal = false;
       var switching = false;
@@ -274,10 +275,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ];
     var slideIntervalMs = 3000;
 
-    backgroundImages.forEach(function (src) {
+    function preloadImage(src) {
       var image = new Image();
+      image.decoding = "async";
       image.src = src;
-    });
+    }
 
     layerA.style.backgroundImage = 'url("' + backgroundImages[0] + '")';
     layerA.classList.add("active");
@@ -289,6 +291,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var activeLayer = layerA;
     var idleLayer = layerB;
     var index = 1;
+
+    function preloadNextImage() {
+      preloadImage(backgroundImages[index % backgroundImages.length]);
+    }
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(preloadNextImage, { timeout: 1500 });
+    } else {
+      window.setTimeout(preloadNextImage, 1000);
+    }
 
     function rotateBackground() {
       var nextImage = backgroundImages[index % backgroundImages.length];
@@ -302,6 +314,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       idleLayer = temp;
 
       index += 1;
+      preloadNextImage();
     }
 
     window.setInterval(rotateBackground, slideIntervalMs);
@@ -397,7 +410,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="timeline-body">
       <div class="timeline-item">
         <div class="timeline-date">
-          <img class="social-icon" src="images/fudan.png" alt="Fudan University logo"/>
+          <img class="social-icon" src="images/fudan.png" alt="Fudan University logo" loading="lazy" decoding="async"/>
           Sep. 2024 - Present
         </div>
         <div class="timeline-title">
@@ -412,7 +425,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="timeline-item">
         <div class="timeline-date">
-          <img class="social-icon" src="images/3H.png" alt="Shanghai 3H Computer logo"/>
+          <img class="social-icon" src="images/3H.png" alt="Shanghai 3H Computer logo" loading="lazy" decoding="async"/>
           Jul. 2023 - Sep. 2023
         </div>
         <div class="timeline-title">
@@ -427,7 +440,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="timeline-item">
         <div class="timeline-date">
-          <img class="social-icon" src="images/tongji.png" alt="Tongji University logo"/>
+          <img class="social-icon" src="images/tongji.png" alt="Tongji University logo" loading="lazy" decoding="async"/>
           Sep. 2020 - Jun. 2024
         </div>
         <div class="timeline-title">
@@ -472,7 +485,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="pub" data-paper-id="fediscan" data-selected="true" data-year="2026" data-order="2" data-topic="Social Bot Detection">
       <div class="pub-left">
-        <img class="intro-img frame" src="images/fediscan.png">
+        <img class="intro-img frame" src="images/fediscan.png" loading="lazy" decoding="async">
       </div>
       <div class="pub-right">
         <div class="title">
@@ -493,7 +506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="pub" data-paper-id="fedidata" data-selected="true" data-year="2025" data-order="1" data-topic="Social Bot Detection">
       <div class="pub-left">
-        <img class="intro-img frame" src="images/fedidata.png">
+        <img class="intro-img frame" src="images/fedidata.png" loading="lazy" decoding="async">
       </div>
       <div class="pub-right">
         <div class="title">
@@ -516,7 +529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="pub" data-paper-id="fusesampleagg" data-selected="false" data-year="2026" data-order="1" data-topic="Graph Computing & Learning">
       <div class="pub-left">
-        <img class="intro-img frame" src="images/fusesampleagg.png">
+        <img class="intro-img frame" src="images/fusesampleagg.png" loading="lazy" decoding="async">
       </div>
       <div class="pub-right">
         <div class="title">
@@ -537,7 +550,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="pub" data-paper-id="tempotriads" data-selected="false" data-year="2025" data-order="2" data-topic="Graph Computing & Learning">
       <div class="pub-left">
-        <img class="intro-img frame" src="images/tempotriads.png">
+        <img class="intro-img frame" src="images/tempotriads.png" loading="lazy" decoding="async">
       </div>
       <div class="pub-right">
         <div class="title">
@@ -856,7 +869,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div style="display: flex; justify-content: center; align-items: center;">
   <div class="visitor-globe">
-    <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=i8ZQDWBE8ewcgou5098taJYI_CejolYD-uhfLXLzOaM"></script>
+    <a href="https://mapmyvisitors.com/web/1c6ml" title="Visitor statistics" target="_blank" rel="noopener noreferrer">
+      <img src="https://mapmyvisitors.com/map.png?d=hVFjI1FrgsHOlDf4MzOWap1-H-3lZuw2JTWsIoVOG_k&amp;cl=ffffff" alt="Visitor map for haoran-du.com" width="180" height="112" decoding="async" fetchpriority="low">
+    </a>
   </div>
 </div>
 
@@ -898,7 +913,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span></span>
           </a> -->
           <a href="https://www.xiaohongshu.com/user/profile/5af7ff1ee8ac2b1c3f6deff9" class="icon-button xiaohongshu" aria-label="小红书" target="_blank" rel="noopener noreferrer">
-            <i> <img class="icon-xiaohongshu" src="https://cdn.simpleicons.org/xiaohongshu/FF2D55" alt="" width="45" height="45" style="vertical-align:middle;"> </i>
+            <i> <img class="icon-xiaohongshu" src="images/xiaohongshu.svg" alt="" width="45" height="45" style="vertical-align:middle;"> </i>
             <span></span>
           </a>
       </div>
